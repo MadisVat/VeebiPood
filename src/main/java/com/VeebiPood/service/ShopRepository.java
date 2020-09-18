@@ -12,11 +12,39 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Repository
-public class AccountRepository {
-
+public class ShopRepository {
 
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
+
+    public void insertProduct(AddProduct addProduct) {
+        String sql = "INSERT INTO product (serial, name_short, name_long, category_id, colour, size, gender, brand, quantity, price) " +
+                "VALUES (:serial, :name_short, :name_long, :category_id, :colour, :size, :gender, :brand, :quantity, :price)";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("serial", addProduct.getSerial());
+        paramMap.put("name_short", addProduct.getName_short());
+        paramMap.put("name_long", addProduct.getName_long());
+        paramMap.put("category_id", addProduct.getCategory_id());
+        paramMap.put("colour", addProduct.getColour());
+        paramMap.put("size", addProduct.getSize());
+        paramMap.put("gender", addProduct.getGender());
+        paramMap.put("brand", addProduct.getBrand());
+        paramMap.put("quantity", addProduct.getQuantity());
+        paramMap.put("price", addProduct.getPrice());
+        jdbcTemplate.update(sql, paramMap);
+    }
+
+/*
+
+    public void createAccount(AddAccount addAccount) {
+        String sql = "INSERT INTO bank (account_no, balance, client_id) VALUES (:account_no, :balance, :client_id)";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("account_no", addAccount.getAccountNumber());
+        paramMap.put("balance", addAccount.getBalance());
+        paramMap.put("client_id", addAccount.getClientId());
+        jdbcTemplate.update(sql, paramMap);
+
+
 
     public BigDecimal getBalance(String fromAccount) {
         String sql = "SELECT balance FROM bank WHERE account_no = :account_no";
@@ -33,14 +61,6 @@ public class AccountRepository {
         jdbcTemplate.update(sql, paramMap);
     }
 
-    public void createAccount(AddAccount addAccount) {
-        String sql = "INSERT INTO bank (account_no, balance, client_id) VALUES (:account_no, :balance, :client_id)";
-        Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("account_no", addAccount.getAccountNumber());
-        paramMap.put("balance", addAccount.getBalance());
-        paramMap.put("client_id", addAccount.getClientId());
-        jdbcTemplate.update(sql, paramMap);
-    }
 
     public Long createClient(AddClient addClient) {
         String sql = "INSERT INTO clients (first_name, last_name) VALUES (:first_name, :last_name)";
@@ -83,7 +103,8 @@ public class AccountRepository {
         paramMap.put("sum", amount);
         jdbcTemplate.update(sql, paramMap);
     }
+*/
 
     // TODO delete account? client?
-    // TODO print out account list(tabeli formaadis - NP kasuta loopi)
+    // TODO print out account list(tabeli formaadis - NP kasuta loopi) - see jäi tegemata. Tõenäoliselt võiks ära teha sist poes ka vaja
 }
