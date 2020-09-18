@@ -98,4 +98,9 @@
         </createTable>
 
     </changeSet>
+    <!--<changeSet id="" author="">
+        <addColumn tableName="???">
+            <column name="active" type="boolean"/>
+        </addColumn>
+    </changeSet>-->
 </databaseChangeLog>
