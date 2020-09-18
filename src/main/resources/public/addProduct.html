@@ -36,14 +36,11 @@
 <form action="">
     <p style="color:white">
 
-    <label for="fname">ID:</label><br>
-    <input type="text" placeholder="ID" id="ID" name="ID" ><br>
+    <label for="serial">Product serial:</label><br>
+    <input type="text" placeholder="Serial" id="serial" name="serial"><br>
 
-    <label for="product_serial">Product serial:</label><br>
-    <input type="text" placeholder="Product serial" id="product_serial" name="product_serial"><br>
-
-    <label for="name_short">Title:</label><br>
-    <input type="text" placeholder="Title" id="name_short" name="name_short" ><br>
+    <label for="name_short">Name:</label><br>
+    <input type="text" placeholder="Name" id="name_short" name="name_short" ><br>
 
     <label for="name_long">Description:</label><br>
     <input type="text" placeholder="Description" id="name_long" name="name_long" ><br>
@@ -58,20 +55,21 @@
             <option value="Sneakers">Sneakers</option>
             <option value="Jacket">Jacket</option>
             <option value="Hat">Hat</option>
+            <option value="6">6</option>
         </select><br>
 <!--    <input type="text" onfocus="this.value=''" id="category_id" name="category_id" value="Category"><br>-->
 
-    <label for="color">Colour:</label><br>
-    <input type="text" placeholder="Color" id="color" name="color"><br>
+    <label for="colour">Colour:</label><br>
+    <input type="text" placeholder="Colour" id="colour" name="colour"><br>
 
     <label for="size">Size:</label><br>
     <input type="text" placeholder="Size" id="size" name="size"><br>
 
-    <label for="product_gender">Gender:</label><br>
-    <input type="text" placeholder="Gender" id="product_gender" name="product_gender"><br>
+    <label for="gender">Gender:</label><br>
+    <input type="text" placeholder="Gender" id="gender" name="gender"><br>
 
-    <label for="fname">Quantity:</label><br>
-    <input type="text" placeholder="Quantity" id="fname" name="fname"><br>
+    <label for="quantity">Quantity:</label><br>
+    <input type="text" placeholder="Quantity" id="quantity" name="quantity"><br>
 
     <label for="brand">Brand:</label><br>
     <input type="text" placeholder="Brand" id="brand" name="brand" ><br>
@@ -79,7 +77,9 @@
     <label for="price">Price:</label><br>
     <input type="text" placeholder="Price" id="price" name="price"><br>
 
-    <input type="submit" value="Submit">
+    <button id="submit" type="button" class="submit">
+        Submit
+    </button>
     <br>
     <br>
         <br>
@@ -101,6 +101,58 @@
 <div class="footer">
     <p><a href="about.html">About</a></p>
 </div>
+
+<script>
+    let serial = document.getElementById("serial");
+    let name_short = document.getElementById("name_short");
+    let name_long = document.getElementById("name_long");
+    let category_id = document.getElementById("category_id");
+    let colour = document.getElementById("colour");
+    let size = document.getElementById("size");
+    let gender = document.getElementById("gender");
+    let quantity = document.getElementById("quantity");
+    let price = document.getElementById("price");
+    let submit = document.getElementById("submit");
+    submit.onclick = function () {
+        fetch("insertProduct/", {
+            method: 'PUT',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                serial: serial.value,
+                name_short: name_short.value,
+                name_long: name_long.value,
+                category_id: category_id.value,
+                colour: colour.value,
+                size: size.value,
+                gender: gender.value,
+                quantity: quantity.value,
+                price: price.value,
+            })
+        })
+<!--             .then(function (response) {-->
+<!--              return response.json();-->
+<!--                   })-->
+<!--            .then(function (jsonData) {-->
+<!--                console.log(jsonData.status);-->
+<!--                if (jsonData.status == 200) {-->
+<!--                    console.log(jsonData);-->
+<!--                    submit.innerHTML = "OK";-->
+<!--                } else {-->
+<!--                    submit.innerHTML = "Ilmnes viga";-->
+<!--                }-->
+<!--            })-->
+<!--            .catch(function (err) {-->
+<!--                console.log(err);-->
+<!--                submit.innerHTML = "Ilmnes viga";-->
+<!--            });-->
+    };
+
+</script>
+
+
 </body>
 </html>
 
