@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -34,9 +35,9 @@ public class ShopRepository {
         jdbcTemplate.update(sql, paramMap);
     }
 
-    public String getCategory() {
+    public List getCategory() {
         String sql = "SELECT name FROM category";
-        return jdbcTemplate.queryForObject(sql, new HashMap<>(), String.class);
+        return jdbcTemplate.queryForObject(sql, new HashMap<>(), List.class);
     }
 /*
 

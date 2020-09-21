@@ -36,66 +36,57 @@
 <form action="">
     <p style="color:white">
 
-    <label for="serial">Product serial:</label><br>
-    <input type="text" placeholder="Serial" id="serial" name="serial"><br>
+        <label for="serial">Product serial:</label><br>
+        <input type="text" placeholder="Serial" id="serial" name="serial"><br>
 
-    <label for="name_short">Name:</label><br>
-    <input type="text" placeholder="Name" id="name_short" name="name_short" ><br>
+        <label for="name_short">Name:</label><br>
+        <input type="text" placeholder="Name" id="name_short" name="name_short"><br>
 
-    <label for="name_long">Description:</label><br>
-    <input type="text" placeholder="Description" id="name_long" name="name_long" ><br>
+        <label for="name_long">Description:</label><br>
+        <input type="text" placeholder="Description" id="name_long" name="name_long"><br>
 
-    <label for="category_id">Category:</label><br>
+        <label for="category_id">Category:</label><br>
         <select id="category_id" name="category_id">
-            <option value="empty"></option>
-            <option value="Shoe">Shoe</option>
-            <option value="Underwear">Underwear</option>
-            <option value="Pants">Pants</option>
-            <option value="Jeans">Jeans</option>
-            <option value="Sneakers">Sneakers</option>
-            <option value="Jacket">Jacket</option>
-            <option value="Hat">Hat</option>
-            <option value="6">6</option>
         </select><br>
-<!--    <input type="text" onfocus="this.value=''" id="category_id" name="category_id" value="Category"><br>-->
+        <!--    <input type="text" onfocus="this.value=''" id="category_id" name="category_id" value="Category"><br>-->
 
-    <label for="colour">Colour:</label><br>
-    <input type="text" placeholder="Colour" id="colour" name="colour"><br>
+        <label for="colour">Colour:</label><br>
+        <input type="text" placeholder="Colour" id="colour" name="colour"><br>
 
-    <label for="size">Size:</label><br>
-    <input type="text" placeholder="Size" id="size" name="size"><br>
+        <label for="size">Size:</label><br>
+        <input type="text" placeholder="Size" id="size" name="size"><br>
 
-    <label for="gender">Gender:</label><br>
-    <input type="text" placeholder="Gender" id="gender" name="gender"><br>
+        <label for="gender">Gender:</label><br>
+        <input type="text" placeholder="Gender" id="gender" name="gender"><br>
 
-    <label for="quantity">Quantity:</label><br>
-    <input type="text" placeholder="Quantity" id="quantity" name="quantity"><br>
+        <label for="quantity">Quantity:</label><br>
+        <input type="text" placeholder="Quantity" id="quantity" name="quantity"><br>
 
-    <label for="brand">Brand:</label><br>
-    <input type="text" placeholder="Brand" id="brand" name="brand" ><br>
+        <label for="brand">Brand:</label><br>
+        <input type="text" placeholder="Brand" id="brand" name="brand"><br>
 
-    <label for="price">Price:</label><br>
-    <input type="text" placeholder="Price" id="price" name="price"><br>
+        <label for="price">Price:</label><br>
+        <input type="text" placeholder="Price" id="price" name="price"><br>
 
-    <button id="submit" type="button" class="submit">
-        Submit
-    </button>
-    <br>
-    <br>
+        <button id="submit" type="button" class="submit">
+            Submit
+        </button>
+        <br>
+        <br>
         <br>
         <br>
 </form>
 </p>
 <style>
-.footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: black;
-  color: white;
-  text-align: center;
-}
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: black;
+        color: white;
+        text-align: center;
+    }
 </style>
 
 <div class="footer">
@@ -103,6 +94,29 @@
 </div>
 
 <script>
+    window.onload = function () {
+        let getCategory = document.getElementById("categery_id");
+        fetch("getCategory/", {
+            method: 'GET',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (jsonData) {
+                    let selectBoxInnerHtml = "getCategory";
+                    for (category in jsonData) {
+                        selectBoxInnerHtml = selectBoxInnerHtml + "<option>" + category.name + "<*option>";
+                    }
+                    document.getElementById("getCategory").innerHTML = selectBoxInnerHtml;
+                })
+        })
+            .catch(function (err) {
+
+            })
+    }
     let serial = document.getElementById("serial");
     let name_short = document.getElementById("name_short");
     let name_long = document.getElementById("name_long");
@@ -132,22 +146,7 @@
                 price: price.value,
             })
         })
-<!--             .then(function (response) {-->
-<!--              return response.json();-->
-<!--                   })-->
-<!--            .then(function (jsonData) {-->
-<!--                console.log(jsonData.status);-->
-<!--                if (jsonData.status == 200) {-->
-<!--                    console.log(jsonData);-->
-<!--                    submit.innerHTML = "OK";-->
-<!--                } else {-->
-<!--                    submit.innerHTML = "Ilmnes viga";-->
-<!--                }-->
-<!--            })-->
-<!--            .catch(function (err) {-->
-<!--                console.log(err);-->
-<!--                submit.innerHTML = "Ilmnes viga";-->
-<!--            });-->
+
     };
 
 </script>
