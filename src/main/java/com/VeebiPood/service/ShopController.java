@@ -18,7 +18,7 @@ public class ShopController {
     }
 
     @GetMapping("getCategory")
-    public List getCategory() {
+    public List<Category> getCategory() {
         return shopService.getCategory();
     }
 

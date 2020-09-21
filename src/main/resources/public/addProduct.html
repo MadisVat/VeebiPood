@@ -44,11 +44,10 @@
 
         <label for="name_long">Description:</label><br>
         <input type="text" placeholder="Description" id="name_long" name="name_long"><br>
-
-        <label for="category_id">Category:</label><br>
-        <select id="category_id" name="category_id">
+        <!--Category DROP DOWN-->
+        <label for="category_id_output">Category:</label><br>
+        <select id="category_id_output" name="category_id_output">
         </select><br>
-        <!--    <input type="text" onfocus="this.value=''" id="category_id" name="category_id" value="Category"><br>-->
 
         <label for="colour">Colour:</label><br>
         <input type="text" placeholder="Colour" id="colour" name="colour"><br>
@@ -95,59 +94,59 @@
 
 <script>
     window.onload = function () {
-        let getCategory = document.getElementById("category_id");
         fetch("getCategory/", {
             method: 'GET',
             cache: 'no-cache',
             headers: {
                 'Content-Type': 'application/json'
             }
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (jsonData) {
-                    let selectBoxInnerHtml = "getCategory";
-                    for (category in jsonData) {
-                        selectBoxInnerHtml = selectBoxInnerHtml + "<option>" + category.name + "<*option>";
-                    }
-                    document.getElementById("getCategory").innerHTML = selectBoxInnerHtml;
-                })
         })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (jsonData) {
+                let selectBoxInnerHtml = "";
+                for (let i = 0; i < jsonData.length; i++) {
+                    selectBoxInnerHtml = selectBoxInnerHtml + '<option value="' + jsonData[i].id + '">' + jsonData[i].name + "</option>";
+                }
+                document.getElementById("category_id_output").innerHTML = selectBoxInnerHtml;
+            })
             .catch(function (err) {
-
+                console.log(err);
             })
     }
-    let serial = document.getElementById("serial");
-    let name_short = document.getElementById("name_short");
-    let name_long = document.getElementById("name_long");
-    let category_id = document.getElementById("category_id");
-    let colour = document.getElementById("colour");
-    let size = document.getElementById("size");
-    let gender = document.getElementById("gender");
-    let quantity = document.getElementById("quantity");
-    let price = document.getElementById("price");
-    let submit = document.getElementById("submit");
-    submit.onclick = function () {
-        fetch("insertProduct/", {
-            method: 'PUT',
-            cache: 'no-cache',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                serial: serial.value,
-                name_short: name_short.value,
-                name_long: name_long.value,
-                category_id: category_id.value,
-                colour: colour.value,
-                size: size.value,
-                gender: gender.value,
-                quantity: quantity.value,
-                price: price.value,
-            })
-        })
 
-    };
+        let serial = document.getElementById("serial");
+        let name_short = document.getElementById("name_short");
+        let name_long = document.getElementById("name_long");
+        let category_id = document.getElementById("category_id");
+        let colour = document.getElementById("colour");
+        let size = document.getElementById("size");
+        let gender = document.getElementById("gender");
+        let quantity = document.getElementById("quantity");
+        let price = document.getElementById("price");
+        let submit = document.getElementById("submit");
+        submit.onclick = function () {
+            fetch("insertProduct/", {
+                method: 'PUT',
+                cache: 'no-cache',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    serial: serial.value,
+                    name_short: name_short.value,
+                    name_long: name_long.value,
+                    category_id: category_id.value,
+                    colour: colour.value,
+                    size: size.value,
+                    gender: gender.value,
+                    quantity: quantity.value,
+                    price: price.value,
+                })
+            })
+
+        };
 
 </script>
 

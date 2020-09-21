@@ -16,7 +16,7 @@ public class ShopService {
         shopRepository.insertProduct(addProduct);
     }
 
-    public List getCategory() {
+    public List<Category> getCategory() {
         return shopRepository.getCategory();
     }
 
