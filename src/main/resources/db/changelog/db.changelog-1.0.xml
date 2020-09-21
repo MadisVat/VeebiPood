@@ -96,7 +96,30 @@
             <column name="total_price" type="numeric">
             </column>
         </createTable>
+    </changeSet>
 
+    <changeSet author="madvat" id="2020-09-21 add table categ and role">
+<!--CATEGORY-->
+        <createTable tableName="category">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="name" type="text">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+<!--ROLE-->
+        <createTable tableName="role">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="value" type="text">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+<!--FK_categroy_id'le-->
+        <addForeignKeyConstraint baseTableName="product" baseColumnNames="category_id" constraintName="fk_product_category" referencedTableName="category"
+                                 referencedColumnNames="id"/>
     </changeSet>
     <!--<changeSet id="" author="">
         <addColumn tableName="???">

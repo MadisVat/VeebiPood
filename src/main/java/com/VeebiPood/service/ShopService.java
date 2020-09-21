@@ -12,9 +12,12 @@ public class ShopService {
     private ShopRepository shopRepository;
 
     public void insertProduct(AddProduct addProduct) {
-                shopRepository.insertProduct(addProduct);
+        shopRepository.insertProduct(addProduct);
     }
 
+    public String getCategory() {
+        return shopRepository.getCategory();
+    }
 
     /*public BigDecimal getBalance(String fromAccount) {
         return shopRepository.getBalance(fromAccount);

@@ -34,6 +34,10 @@ public class ShopRepository {
         jdbcTemplate.update(sql, paramMap);
     }
 
+    public String getCategory() {
+        String sql = "SELECT name FROM category";
+        return jdbcTemplate.queryForObject(sql, new HashMap<>(), String.class);
+    }
 /*
 
     public void createAccount(AddAccount addAccount) {

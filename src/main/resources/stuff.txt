@@ -9,3 +9,8 @@
 "brand" type="text"
 "quantity" type="numeric"
 "price" type="numeric"
+
+
+window.onload=function(){
+        alert("kirjuta kood siia");
+    }

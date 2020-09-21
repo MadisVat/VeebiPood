@@ -14,6 +14,12 @@ public class ShopController {
     @PutMapping("insertProduct")
     public void insertProduct(@RequestBody AddProduct addProduct) {
         shopService.insertProduct(addProduct);
+    }
+
+    @GetMapping("getCategory")
+    public String getCategory() {
+        return shopService.getCategory();
+    }
 
     /*@GetMapping("balance/{accountNumber}")
     public BigDecimal accountBalance(@PathVariable("accountNumber") String request) {
@@ -54,5 +60,4 @@ public class ShopController {
             "id": 8888
     }*/
 
-    }
 }
