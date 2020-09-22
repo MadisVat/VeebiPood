@@ -1,4 +1,4 @@
-package com.VeebiPood.service;
+package com.VeebiPood.service.gettersAndSetters;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

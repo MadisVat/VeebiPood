@@ -1,13 +1,12 @@
 package com.VeebiPood.service;
 
+import com.VeebiPood.service.Dropdowns.Category;
+import com.VeebiPood.service.Dropdowns.CategoryRowMapper;
+import com.VeebiPood.service.gettersAndSetters.AddProduct;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

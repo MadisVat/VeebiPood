@@ -1,10 +1,12 @@
 package com.VeebiPood.service;
 
 
+import com.VeebiPood.service.Dropdowns.Category;
+import com.VeebiPood.service.Hybernate.HybernateRepo;
+import com.VeebiPood.service.gettersAndSetters.AddProduct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -12,7 +14,11 @@ public class ShopService {
     @Autowired
     private ShopRepository shopRepository;
 
+    @Autowired
+    private HybernateRepo hybernateRepo;
+
     public void insertProduct(AddProduct addProduct) {
+//Hybernate puhul tuleks selle asemele hybernateRepo.save(account); vms
         shopRepository.insertProduct(addProduct);
     }
 

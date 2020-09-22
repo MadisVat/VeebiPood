@@ -1,4 +1,4 @@
-package com.VeebiPood.service;
+package com.VeebiPood.service.Dropdowns;
 
 import org.springframework.jdbc.core.RowMapper;
 
