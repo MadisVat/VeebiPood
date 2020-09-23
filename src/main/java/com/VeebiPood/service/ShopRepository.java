@@ -2,7 +2,8 @@ package com.VeebiPood.service;
 
 import com.VeebiPood.service.Dropdowns.Category;
 import com.VeebiPood.service.Dropdowns.CategoryRowMapper;
-import com.VeebiPood.service.gettersAndSetters.AddProduct;
+import com.VeebiPood.service.gettersAndSetters.Product;
+import com.VeebiPood.service.gettersAndSetters.ProductRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -17,20 +18,20 @@ public class ShopRepository {
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
-    public void insertProduct(AddProduct addProduct) {
+    public void insertProduct(Product product) {
         String sql = "INSERT INTO product (serial, name_short, name_long, category_id, colour, size, gender, brand, quantity, price) " +
                 "VALUES (:serial, :name_short, :name_long, :category_id, :colour, :size, :gender, :brand, :quantity, :price)";
         Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("serial", addProduct.getSerial());
-        paramMap.put("name_short", addProduct.getName_short());
-        paramMap.put("name_long", addProduct.getName_long());
-        paramMap.put("category_id", addProduct.getCategory_id());
-        paramMap.put("colour", addProduct.getColour());
-        paramMap.put("size", addProduct.getSize());
-        paramMap.put("gender", addProduct.getGender());
-        paramMap.put("brand", addProduct.getBrand());
-        paramMap.put("quantity", addProduct.getQuantity());
-        paramMap.put("price", addProduct.getPrice());
+        paramMap.put("serial", product.getSerial());
+        paramMap.put("name_short", product.getName_short());
+        paramMap.put("name_long", product.getName_long());
+        paramMap.put("category_id", product.getCategory_id());
+        paramMap.put("colour", product.getColour());
+        paramMap.put("size", product.getSize());
+        paramMap.put("gender", product.getGender());
+        paramMap.put("brand", product.getBrand());
+        paramMap.put("quantity", product.getQuantity());
+        paramMap.put("price", product.getPrice());
         jdbcTemplate.update(sql, paramMap);
     }
 
@@ -38,6 +39,12 @@ public class ShopRepository {
         String sql = "SELECT id, name FROM category";
         return jdbcTemplate.query(sql, new HashMap<>(), new CategoryRowMapper());
     }
+
+    public List<Product> getProductInfo() {
+        String sql = "SELECT * FROM product";
+        return jdbcTemplate.query(sql, new HashMap<>(), new ProductRowMapper());
+    }
+
 /*
 
     public void createAccount(AddAccount addAccount) {

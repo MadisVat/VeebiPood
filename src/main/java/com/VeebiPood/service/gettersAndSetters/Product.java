@@ -3,24 +3,24 @@ package com.VeebiPood.service.gettersAndSetters;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-public class AddProduct {
-    private BigInteger id;
+public class Product {
+    private Long id;
     private String serial;
     private String name_short;
     private String name_long;
-    private BigInteger category_id;
+    private Long category_id;
     private String colour;
     private String size;
     private String gender;
     private String brand;
-    private BigInteger quantity;
+    private Long quantity;
     private BigDecimal price;
 
-    public BigInteger getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(BigInteger id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -48,11 +48,11 @@ public class AddProduct {
         this.name_long = name_long;
     }
 
-    public BigInteger getCategory_id() {
+    public Long getCategory_id() {
         return category_id;
     }
 
-    public void setCategory_id(BigInteger category_id) {
+    public void setCategory_id(Long category_id) {
         this.category_id = category_id;
     }
 
@@ -88,11 +88,11 @@ public class AddProduct {
         this.brand = brand;
     }
 
-    public BigInteger getQuantity() {
+    public Long getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(BigInteger quantity) {
+    public void setQuantity(Long quantity) {
         this.quantity = quantity;
     }
 
