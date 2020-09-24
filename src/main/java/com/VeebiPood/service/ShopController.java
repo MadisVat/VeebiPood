@@ -18,16 +18,26 @@ public class ShopController {
         shopService.insertProduct(product);
     }
 
-    @GetMapping("getCategory")
-    public List<Category> getCategory() {
-        return shopService.getCategory();
-    }
-//POSTMANNIGA SAAB TESTIDA JUUUU
+    // TODO kategooria kuvamine korrektseks
 
     @GetMapping("getProductInfo")
     public List<Product> getProductInfo() {
         return shopService.getProductInfo();
     }
+
+    @PutMapping("addCategory")
+    public void addCategory(@RequestBody Category category) {
+        shopService.addCategory(category);
+    }
+
+
+    @GetMapping("getCategory")
+    public List<Category> getCategory() {
+        return shopService.getCategory();
+    }
+
+
+    //@PutMapping("addAccount")
 
 //    @GetMapping("getProductPic")
 //    public List<Category> getCategory() {
@@ -66,7 +76,7 @@ public class ShopController {
     public void createAccount(@RequestBody AddAccount addAccount) {
         shopService.createAccount(addAccount);
 */
-        // accountService.createAccount(addAccount.getAccountNumber(), addAccount.getBalance(), addAccount.getId());
+    // accountService.createAccount(addAccount.getAccountNumber(), addAccount.getBalance(), addAccount.getId());
         /*{
         "accountNumber": "EE333",
             "balance": 0,

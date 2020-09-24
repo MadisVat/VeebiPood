@@ -35,15 +35,25 @@ public class ShopRepository {
         jdbcTemplate.update(sql, paramMap);
     }
 
+    public List<Product> getProductInfo() {
+        String sql = "SELECT * FROM product";
+        return jdbcTemplate.query(sql, new HashMap<>(), new ProductRowMapper());
+    }
+
+    public void addCategory(Category category) {
+        String sql = "INSERT INTO category (name) VALUES (:name)";
+        Map<String, Object> paraMap = new HashMap<>();
+        paraMap.put("name", category.getName());
+        jdbcTemplate.update(sql, paraMap);
+    }
+
     public List<Category> getCategory() {
         String sql = "SELECT id, name FROM category";
         return jdbcTemplate.query(sql, new HashMap<>(), new CategoryRowMapper());
     }
 
-    public List<Product> getProductInfo() {
-        String sql = "SELECT * FROM product";
-        return jdbcTemplate.query(sql, new HashMap<>(), new ProductRowMapper());
-    }
+
+
 
 /*
 

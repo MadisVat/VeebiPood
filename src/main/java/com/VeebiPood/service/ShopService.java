@@ -5,6 +5,7 @@ import com.VeebiPood.service.Dropdowns.Category;
 import com.VeebiPood.service.Hybernate.HybernateRepo;
 import com.VeebiPood.service.gettersAndSetters.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.BufferedImageHttpMessageConverter;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,17 +19,26 @@ public class ShopService {
     private HybernateRepo hybernateRepo;
 
     public void insertProduct(Product product) {
-//Hybernate puhul tuleks selle asemele hybernateRepo.save(account); vms
+        //Hybernate puhul tuleks selle asemele hybernateRepo.save(account); vms
         shopRepository.insertProduct(product);
+    }
+
+    public List<Product> getProductInfo() {
+        return shopRepository.getProductInfo();
+    }
+
+    public void addCategory(Category category) {
+        shopRepository.addCategory(category);
     }
 
     public List<Category> getCategory() {
         return shopRepository.getCategory();
     }
 
-    public List<Product> getProductInfo() {
-        return shopRepository.getProductInfo();
-    }
+//    public static byte[] converterDemo(Image x) {
+//        ImageConverter _imageConverter = new BufferedImageHttpMessageConverter();
+//    }
+
 
 
 
