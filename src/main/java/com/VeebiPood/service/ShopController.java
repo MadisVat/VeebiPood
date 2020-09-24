@@ -23,6 +23,7 @@ public class ShopController {
         return shopService.getCategory();
     }
 //POSTMANNIGA SAAB TESTIDA JUUUU
+
     @GetMapping("getProductInfo")
     public List<Product> getProductInfo() {
         return shopService.getProductInfo();
