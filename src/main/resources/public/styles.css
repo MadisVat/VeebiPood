@@ -97,5 +97,14 @@ p {
     text-align: center;
 }
 
+/* Image Designing Propoerties */
+/* TODO https://stackoverflow.com/questions/22087076/how-to-make-a-simple-image-upload-using-javascript-html*/
+.thumb {
+    height: 75px;
+    border: 1px solid #000;
+    margin: 10px 5px 0 0;
+}
+
+
 
 /*siit algab cart osa*/

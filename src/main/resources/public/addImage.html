@@ -29,11 +29,32 @@
 <br/>
 
 <div class="center">
-    <h2> About </h2>
-    <p> Siia tuleb "about" tekst
+    <h2> ADD IMAGE </h2>
+    <p>
+        <input type='file' />
+        </br><img id="myImg" src="#" alt="your image" height=200 width=100>
     </p>
 </div>
 
+<script type="text/javascript">
+    /* The uploader form */
+    $(function () {
+        $(":file").change(function () {
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = imageIsLoaded;
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+    });
+
+    function imageIsLoaded(e) {
+        $('#myImg').attr('src', e.target.result);
+        $('#yourImage').attr('src', e.target.result);
+    };
+
+</script>
 </body>
 </html>
 
