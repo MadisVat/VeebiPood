@@ -27,34 +27,35 @@
 <br/>
 <br/>
 <br/>
+  <div class="center">
+        <h2> Add picture </h2>
+        <p>
 
-<div class="center">
-    <h2> ADD IMAGE </h2>
-    <p>
-        <input type='file' />
-        </br><img id="myImg" src="#" alt="your image" height=200 width=100>
-    </p>
-</div>
+        <form id="formElem">
+            <input type="text" placeholder="Pildi id" name="firstName">
+            Picture: <input type="file" name="picture" accept="image/*">
+            <input type="submit">
+        </form>
 
-<script type="text/javascript">
-    /* The uploader form */
-    $(function () {
-        $(":file").change(function () {
-            if (this.files && this.files[0]) {
-                var reader = new FileReader();
 
-                reader.onload = imageIsLoaded;
-                reader.readAsDataURL(this.files[0]);
-            }
+        </p>
+    </div>
+
+<script>
+    formElem.onsubmit = async (e) => {
+        e.preventDefault();
+
+        let response = await fetch('/article/formdata/post/user-avatar', {
+            method: 'POST',
+            body: new FormData(formElem)
         });
-    });
 
-    function imageIsLoaded(e) {
-        $('#myImg').attr('src', e.target.result);
-        $('#yourImage').attr('src', e.target.result);
+        let result = await response.json();
+
+        alert(result.message);
     };
-
 </script>
+
 </body>
 </html>
 
