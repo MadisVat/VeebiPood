@@ -3,11 +3,13 @@ package com.VeebiPood.service;
 
 import com.VeebiPood.service.Dropdowns.Category;
 import com.VeebiPood.service.Hybernate.HybernateRepo;
+import com.VeebiPood.service.gettersAndSetters.CartItem;
 import com.VeebiPood.service.gettersAndSetters.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.BufferedImageHttpMessageConverter;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -19,8 +21,8 @@ public class ShopService {
     private HybernateRepo hybernateRepo;
 
     public void insertProduct(Product product) {
-        //Hybernate puhul tuleks selle asemele hybernateRepo.save(account); vms
         shopRepository.insertProduct(product);
+        //Hybernate puhul tuleks selle asemele hybernateRepo.save(account); vms
     }
 
     public List<Product> getProductInfo() {
@@ -34,6 +36,47 @@ public class ShopService {
     public List<Category> getCategory() {
         return shopRepository.getCategory();
     }
+
+    public void addItemToCart(Long productId, Long quantity, String userName) {
+
+    }
+
+    // TODO add to cart FRONDIST tuleb productID ja Quantity
+//addItemToCart
+//getCartItemList
+
+
+    /*public BigDecimal transferCurrency(String fromAccount, String toAccount, BigDecimal amount) {
+        accountRepository.getBalance(fromAccount);
+        BigDecimal currentBalanceFrom = accountRepository.getBalance(fromAccount);
+        System.out.println("Current balance \"From Account\": " + currentBalanceFrom);
+        int kasNullistSuurem = amount.compareTo(BigDecimal.ZERO);
+        if (kasNullistSuurem > 0) {
+            int result = currentBalanceFrom.compareTo(amount);
+            if (result >= 0) {
+                BigDecimal newBalanceFrom = currentBalanceFrom.subtract(amount);
+                System.out.println("New balance \"From Account\": " + newBalanceFrom);
+                accountRepository.updateBalance(fromAccount, newBalanceFrom);
+                accountRepository.getBalance(toAccount); // to Account
+                BigDecimal currentBalanceTo = accountRepository.getBalance(toAccount);
+                System.out.println("Current balance \"TO Account\": " + currentBalanceTo);
+                BigDecimal newBalanceTo = currentBalanceTo.add(amount);
+                System.out.println("New balance \"TO Account\": " + newBalanceTo);
+                accountRepository.updateBalance(toAccount, newBalanceTo);
+                Long fromAccountId = accountRepository.getAccountIdByAccountNumber(fromAccount);
+                Long toAccountId = accountRepository.getAccountIdByAccountNumber(toAccount);
+                accountRepository.logTransfer(fromAccountId, toAccountId, amount);
+                return accountRepository.getBalance(toAccount);
+            } else {
+                System.out.println("Insufficient funds");
+                return accountRepository.getBalance(toAccount);
+            }
+        }
+        System.out.println("Amount can't be smaller than 0");
+        return accountRepository.getBalance(toAccount);
+    }
+    */
+
 
 //    public static byte[] converterDemo(Image x) {
 //        ImageConverter _imageConverter = new BufferedImageHttpMessageConverter();

@@ -2,12 +2,15 @@ package com.VeebiPood.service;
 
 import com.VeebiPood.service.Dropdowns.Category;
 import com.VeebiPood.service.Dropdowns.CategoryRowMapper;
+import com.VeebiPood.service.gettersAndSetters.CartItem;
+import com.VeebiPood.service.gettersAndSetters.CartItemRowMapper;
 import com.VeebiPood.service.gettersAndSetters.Product;
 import com.VeebiPood.service.gettersAndSetters.ProductRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +54,50 @@ public class ShopRepository {
         String sql = "SELECT id, name FROM category";
         return jdbcTemplate.query(sql, new HashMap<>(), new CategoryRowMapper());
     }
+
+    public void addItemToCart(CartItem cartItem) {
+        String sql = "INSERT INTO cart_item (product_id, account_id, quantity, price) " +
+                "VALUES (:product_id, :account_id, :quantity, :price)";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("product_id", cartItem.getProduct_id());
+        paramMap.put("account_id", cartItem.getAccount_id());
+        paramMap.put("quantity", cartItem.getQuantity());
+        paramMap.put("price", cartItem.getPrice());
+        jdbcTemplate.update(sql, paramMap);
+    }
+
+    public BigDecimal getProductPrice(Product product) {
+        String sql = "SELECT price FROM product where id = :id";
+        Map<String, Object> paraMap = new HashMap<>();
+        paraMap.get("price", )
+        return jdbcTemplate.query(sql, new HashMap<>()
+    }
+    //select price from product where id = '11'
+
+  /*  public BigDecimal getBalance(String fromAccount) {
+        String sql = "SELECT balance FROM bank WHERE account_no = :account_no";
+        Map<String, String> paramMap = new HashMap<>();
+        paramMap.put("account_no", fromAccount);
+        return jdbcTemplate.queryForObject(sql, paramMap, BigDecimal.class);
+    }*/
+
+
+
+    public List<CartItem> getCartItemList() {
+        String sql = "SELECT * FROM cart_item WHERE account_id = :account_id";
+        return jdbcTemplate.query(sql, new HashMap<>(), new CartItemRowMapper());
+    }
+    //select * from product where gender = 'male'
+
+
+    // TODO delete row from cart db- kui orderiks läheb.
+    // TODO delete row from product db
+    // TODO Print lists - product, cart_item. Listi järgi nupud kustutusfunktsiooniga.
+
+//    public List<CartItem> getCartItem() {
+//        String sql = "SELECT"
+//    }
+
 
 
 
