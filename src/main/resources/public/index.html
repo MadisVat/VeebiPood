@@ -23,9 +23,9 @@
     <!--VIITED-->
     <a href="index.html">E-pood</a>
     <a href="shop.html" class="navButton1" style="float: left">SHOP</a>
-    <a href="shoppingCart.html" class="navButton2" style="float: right">CART</a>
+    <a id="cartButton" href="shoppingCart.html" class="navButton2" style="float: right; visibility: hidden;">CART</a>
     <a href="account.html" class="navButton2" style="float: right">Account</a>
-<!--    <a href="product.html" class="navButton1" style="float: right">Add product</a>-->
+    <!--    <a href="product.html" class="navButton1" style="float: right">Add product</a>-->
   </h1>
 </div>
 
@@ -53,6 +53,30 @@
   <p><a href="about.html">About us</a></p>
 </div>
 
+<script>
+  fetch('userStatus',
+      {
+        method: 'GET',
+        cache: 'no-cache',
+        headers: {
+          'Content-Type':
+              'application/json'
+        }
+      }
+  )
+      .then(function(data){
+        return data.json()
+    })
+      .then(function (jsonData) {
+        let cartButton = document.getElementById("cartButton");
+        if(jsonData.loggedIn){
+          cartButton.style.visibility = "visible";
+        }
+      })
+      .catch(function (err) {
+        console.log(err);
+      })
+</script>
 </body>
 
 </html>

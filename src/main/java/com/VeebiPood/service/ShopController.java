@@ -6,6 +6,7 @@ import com.VeebiPood.service.gettersAndSetters.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -30,12 +31,15 @@ public class ShopController {
         shopService.addCategory(category);
     }
 
-
     @GetMapping("getCategory")
     public List<Category> getCategory() {
         return shopService.getCategory();
     }
 
+    @GetMapping("userStatus")
+    public LoggedInResponse userStatus(Principal principal){
+        return new LoggedInResponse(principal);
+    }
 
     //@PutMapping("addAccount")
 
