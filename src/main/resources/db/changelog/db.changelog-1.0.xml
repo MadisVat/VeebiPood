@@ -121,9 +121,24 @@
         <addForeignKeyConstraint baseTableName="product" baseColumnNames="category_id" constraintName="fk_product_category" referencedTableName="category"
                                  referencedColumnNames="id"/>
     </changeSet>
-    <!--<changeSet id="" author="">
-        <addColumn tableName="???">
-            <column name="active" type="boolean"/>
-        </addColumn>
-    </changeSet>-->
+
+    <changeSet author="madvat" id="2020-09-28 add table cart_item">
+        <!--CART_ITEM-->
+        <createTable tableName="cart_item">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="product_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_cartItem_to_productId" references="product(id)"/>
+            </column>
+            <column name="account_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_cartItem_to_accountId" references="account(id)"/>
+            </column>
+            <column name="quantity" type="bigint">
+            </column>
+            <column name="price" type="numeric">
+            </column>
+        </createTable>
+    </changeSet>
+
 </databaseChangeLog>

@@ -2,6 +2,7 @@ package com.VeebiPood.service;
 
 import com.VeebiPood.service.Dropdowns.Category;
 import com.VeebiPood.service.Dropdowns.CategoryRowMapper;
+import com.VeebiPood.service.gettersAndSetters.CartItem;
 import com.VeebiPood.service.gettersAndSetters.Product;
 import com.VeebiPood.service.gettersAndSetters.ProductRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +53,15 @@ public class ShopRepository {
         return jdbcTemplate.query(sql, new HashMap<>(), new CategoryRowMapper());
     }
 
-
+    public void addToCart(CartItem cartItem) {
+        String sql = "INSERT INTO cart_item (product_id, account_id, quantity, price) VALUES (:product_id, :account_id, :quantity, :price)";
+        Map<String, Object> paraMap = new HashMap<>();
+        paraMap.put("product_id", cartItem.getProduct_id());
+        paraMap.put("account_id", cartItem.getAccount_id());
+        paraMap.put("quantity", cartItem.getQuantity());
+        paraMap.put("price", cartItem.getPrice());
+        jdbcTemplate.update(sql, paraMap);
+    }
 
 
 /*

@@ -2,6 +2,8 @@ package com.VeebiPood.service;
 
 
 import com.VeebiPood.service.Dropdowns.Category;
+import com.VeebiPood.service.gettersAndSetters.CartItem;
+import com.VeebiPood.service.gettersAndSetters.LoggedInResponse;
 import com.VeebiPood.service.gettersAndSetters.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -39,6 +41,11 @@ public class ShopController {
     @GetMapping("userStatus")
     public LoggedInResponse userStatus(Principal principal){
         return new LoggedInResponse(principal);
+    }
+
+    @GetMapping("addToCart")
+    public void addToCart(@RequestBody CartItem cart) {
+        shopService.addToCart(cart);
     }
 
     //@PutMapping("addAccount")

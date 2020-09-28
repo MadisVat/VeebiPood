@@ -3,6 +3,7 @@ package com.VeebiPood.service;
 
 import com.VeebiPood.service.Dropdowns.Category;
 import com.VeebiPood.service.Hybernate.HybernateRepo;
+import com.VeebiPood.service.gettersAndSetters.CartItem;
 import com.VeebiPood.service.gettersAndSetters.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.BufferedImageHttpMessageConverter;
@@ -34,6 +35,8 @@ public class ShopService {
     public List<Category> getCategory() {
         return shopRepository.getCategory();
     }
+
+    public void addToCart(CartItem cart) { shopRepository.addToCart(cart);}
 
 //    public static byte[] converterDemo(Image x) {
 //        ImageConverter _imageConverter = new BufferedImageHttpMessageConverter();

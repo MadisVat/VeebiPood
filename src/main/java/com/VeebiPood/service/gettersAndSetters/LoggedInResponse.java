@@ -1,4 +1,4 @@
-package com.VeebiPood.service;
+package com.VeebiPood.service.gettersAndSetters;
 
 import java.security.Principal;
 
