@@ -23,6 +23,8 @@
             </column>
             <column name="active" type="boolean">
             </column>
+            <column name="user_name" type="text">
+            </column>
         </createTable>
 <!--PRODUCT-->
         <createTable tableName="product">

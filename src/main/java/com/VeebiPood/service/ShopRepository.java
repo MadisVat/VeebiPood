@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
+import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,9 +27,9 @@ public class ShopRepository {
                 "VALUES (:serial, :name_short, :name_long, :category_id, :colour, :size, :gender, :brand, :quantity, :price)";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("serial", product.getSerial());
-        paramMap.put("name_short", product.getName_short());
-        paramMap.put("name_long", product.getName_long());
-        paramMap.put("category_id", product.getCategory_id());
+        paramMap.put("name_short", product.getNameShort());
+        paramMap.put("name_long", product.getNameLong());
+        paramMap.put("category_id", product.getCategoryId());
         paramMap.put("colour", product.getColour());
         paramMap.put("size", product.getSize());
         paramMap.put("gender", product.getGender());
@@ -43,6 +44,20 @@ public class ShopRepository {
         return jdbcTemplate.query(sql, new HashMap<>(), new ProductRowMapper());
     }
 
+    public BigDecimal getProductPrice(Long id) {
+        String sql = "SELECT price FROM product where id = :id";
+        Map<String, Object> paraMap = new HashMap<>();
+        paraMap.put("id", id);
+        return jdbcTemplate.queryForObject(sql, paraMap, BigDecimal.class);
+    }
+
+    public String getProductName(Long id) {
+        String sql = "SELECT name_short FROM product where id = :id";
+        Map<String, Object> paraMap = new HashMap<>();
+        paraMap.put("id", id);
+        return jdbcTemplate.queryForObject(sql, paraMap, String.class);
+    }
+
     public void addCategory(Category category) {
         String sql = "INSERT INTO category (name) VALUES (:name)";
         Map<String, Object> paraMap = new HashMap<>();
@@ -55,51 +70,36 @@ public class ShopRepository {
         return jdbcTemplate.query(sql, new HashMap<>(), new CategoryRowMapper());
     }
 
-    public void addItemToCart(CartItem cartItem) {
+    public void addItemToCart(Long productId, Long accountId, Long quantity, BigDecimal price) {
         String sql = "INSERT INTO cart_item (product_id, account_id, quantity, price) " +
                 "VALUES (:product_id, :account_id, :quantity, :price)";
         Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("product_id", cartItem.getProduct_id());
-        paramMap.put("account_id", cartItem.getAccount_id());
-        paramMap.put("quantity", cartItem.getQuantity());
-        paramMap.put("price", cartItem.getPrice());
+        paramMap.put("product_id", productId);
+        paramMap.put("account_id", accountId);
+        paramMap.put("quantity", quantity);
+        paramMap.put("price", price);
         jdbcTemplate.update(sql, paramMap);
     }
 
-    public BigDecimal getProductPrice(Product product) {
-        String sql = "SELECT price FROM product where id = :id";
-        Map<String, Object> paraMap = new HashMap<>();
-        paraMap.get("price", )
-        return jdbcTemplate.query(sql, new HashMap<>()
-    }
-    //select price from product where id = '11'
-
-  /*  public BigDecimal getBalance(String fromAccount) {
-        String sql = "SELECT balance FROM bank WHERE account_no = :account_no";
+    public Long getAccountId(String userName) {
+        String sql = "SELECT id FROM account WHERE user_name = :userName";
         Map<String, String> paramMap = new HashMap<>();
-        paramMap.put("account_no", fromAccount);
-        return jdbcTemplate.queryForObject(sql, paramMap, BigDecimal.class);
-    }*/
+        paramMap.put("user_name", userName);
+        return jdbcTemplate.queryForObject(sql, paramMap, Long.class);
+    }
 
-
-
-    public List<CartItem> getCartItemList() {
+    public List<CartItem> getCartItemList(CartItem cartItem) {
         String sql = "SELECT * FROM cart_item WHERE account_id = :account_id";
+        Map<String, Long> paramMap = new HashMap<>();
+        paramMap.put("account_id", cartItem.getAccountId());
         return jdbcTemplate.query(sql, new HashMap<>(), new CartItemRowMapper());
     }
-    //select * from product where gender = 'male'
 
+    //select * from product where gender = 'male'
 
     // TODO delete row from cart db- kui orderiks läheb.
     // TODO delete row from product db
     // TODO Print lists - product, cart_item. Listi järgi nupud kustutusfunktsiooniga.
-
-//    public List<CartItem> getCartItem() {
-//        String sql = "SELECT"
-//    }
-
-
-
 
 
 /*

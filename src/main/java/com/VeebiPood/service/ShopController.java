@@ -2,11 +2,13 @@ package com.VeebiPood.service;
 
 
 import com.VeebiPood.service.Dropdowns.Category;
+import com.VeebiPood.service.gettersAndSetters.AddCartItemRequest;
 import com.VeebiPood.service.gettersAndSetters.LoggedInResponse;
 import com.VeebiPood.service.gettersAndSetters.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.security.Principal;
 import java.util.List;
 
@@ -38,19 +40,29 @@ public class ShopController {
     }
 
     @GetMapping("userStatus")
-    public LoggedInResponse userStatus(Principal principal){
+    public LoggedInResponse userStatus(Principal principal) {
         return new LoggedInResponse(principal);
     }
 
-    @PutMapping("addToCart")
-    public void addToCart(@RequestBody AddCartItemRequest request, Principal principal){
+    @GetMapping("getProductPrice")
+    public BigDecimal getProductPrice(@RequestBody Long id) {
+        return shopService.getProductPrice(id);
+    }
+
+    @PutMapping("addItemToCart")
+    public void addItemToCart(@RequestBody AddCartItemRequest request, Principal principal) {
         shopService.addItemToCart(request.getProductId(), request.getQuantity(), principal.getName());
     }
 
-//    @GetMapping("getProductPic")
-//    public List<Category> getCategory() {
-//        return shopService.getCategory();
+//    @PutMapping("withdraw/{accountNumber}")
+//    public BigDecimal withdraw(@PathVariable("accountNumber") String request, @RequestBody BigDecimal amount) {
+//        accountService.withdrawCurrency(request, amount);
+//        return accountService.getBalance(request);
 //    }
+
+
+//    @GetMapping("getProductPic")
+
 
     /*@GetMapping("balance/{accountNumber}")
     public BigDecimal accountBalance(@PathVariable("accountNumber") String request) {

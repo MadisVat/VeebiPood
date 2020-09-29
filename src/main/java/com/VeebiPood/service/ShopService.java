@@ -3,6 +3,7 @@ package com.VeebiPood.service;
 
 import com.VeebiPood.service.Dropdowns.Category;
 import com.VeebiPood.service.Hybernate.HybernateRepo;
+import com.VeebiPood.service.gettersAndSetters.AddCartItemRequest;
 import com.VeebiPood.service.gettersAndSetters.CartItem;
 import com.VeebiPood.service.gettersAndSetters.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.http.converter.BufferedImageHttpMessageConverter;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.util.List;
 
 @Service
@@ -37,9 +39,25 @@ public class ShopService {
         return shopRepository.getCategory();
     }
 
-    public void addItemToCart(Long productId, Long quantity, String userName) {
-
+    public BigDecimal getProductPrice(Long id) {
+        return shopRepository.getProductPrice(id);
     }
+
+    public String getProductName(Long id) {
+        return shopRepository.getProductName(id);
+    }
+
+    public void addItemToCart(Long productId, Long quantity, String userName) {
+        Long accountId = shopRepository.getAccountId(userName);
+        BigDecimal productPrice = shopRepository.getProductPrice(productId);
+        shopRepository.addItemToCart(productId, accountId, quantity, productPrice);
+    }
+
+//    paramMap.put("product_id", cartItem.getProductId());
+//        paramMap.put("account_id", cartItem.getAccountId());
+//        paramMap.put("quantity", cartItem.getQuantity());
+//        paramMap.put("price", cartItem.getPrice());
+
 
     // TODO add to cart FRONDIST tuleb productID ja Quantity
 //addItemToCart

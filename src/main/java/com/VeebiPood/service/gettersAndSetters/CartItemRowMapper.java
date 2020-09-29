@@ -13,8 +13,8 @@ public class CartItemRowMapper implements RowMapper<CartItem> {
     public CartItem mapRow(ResultSet resultSet, int i) throws SQLException {
         CartItem cartItem = new CartItem();
         cartItem.setId(resultSet.getLong("id"));
-        cartItem.setProduct_id(resultSet.getLong("product_id"));
-        cartItem.setAccount_id(resultSet.getLong("account_id"));
+        cartItem.setProductId(resultSet.getLong("product_id"));
+        cartItem.setAccountId(resultSet.getLong("account_id"));
         cartItem.setQuantity(resultSet.getLong("quantity"));
         cartItem.setPrice(resultSet.getBigDecimal("price"));
         return cartItem;
