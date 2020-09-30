@@ -21,27 +21,38 @@
     </h1>
 </div>
 
+
+
 <div class="footer">
     <p><a href="about.html">About us</a></p>
 </div>
 
-<!--
-<div class="col-25">
-    <div class="container">
-        <h4>Cart
-            <span class="price" style="color:black">
-          <i class="fa fa-shopping-cart"></i>
-          <b>4</b>
-        </span>
-        </h4>
-        <p><a href="#">'+jsonData[i].name_short+'</a> <span class="price">€'+jsonData[i].price+'</span></p>
-        <p><a href="#">Product 2</a> <span class="price">$5</span></p>
-        <p><a href="#">Product 3</a> <span class="price">$8</span></p>
-        <p><a href="#">Product 4</a> <span class="price">$2</span></p>
-        <hr>
-        <p>Total <span class="price" style="color:black"><b>$30</b></span></p>
-    </div>
-</div>-->
+
+<!--<div class="col-25">-->
+<!--    <div class="container">-->
+<!--        <h4>Cart-->
+<!--            <span class="price" style="color:black">-->
+<!--          <i class="fa fa-shopping-cart"></i>-->
+<!--          <b>4</b>-->
+<!--        </span>-->
+<!--        </h4>-->
+<!--        <p><a href="#">'+jsonData[i].name_short+'</a> <span class="price">€'+jsonData[i].price+'</span></p>-->
+<!--        <p><a href="#">Product 2</a> <span class="price">$5</span></p>-->
+<!--        <p><a href="#">Product 3</a> <span class="price">$8</span></p>-->
+<!--        <p><a href="#">Product 4</a> <span class="price">$2</span></p>-->
+<!--        <hr>-->
+<!--        <p>Total <span class="price" style="color:black"><b>$30</b></span></p>-->
+<!--    </div>-->
+<div id="cart_div" class="row">
+
+</div>
+
+
+
+
+<button class="checkout">Checkout</button>
+
+
 
 <script>
 
@@ -60,23 +71,29 @@
             for (let i = 0; i < jsonData.length; i++) {
                 info = info + '    <div class="col-25">\n' +
                     '        <div class="container">\n' +
-                    '            <h4>Cart \n' +
-                    '                <span class="price" style="color:black">' + jsonData[i].productId + '</span>\n' +
+                    '            <h4>Cart\n' +
+                    '                <span class="price" style="color:black">' + jsonData[i].quantity + '\n' +
                     '               <i class="fa fa-shopping-cart"></i> ' +
-                    '               <b>4</b> ' +
                     '                </span>' +
                     '                    </h4>' +
                     '                    <div class="product-links">\n' +
-                    '                        <p><a href="#">' + jsonData[i].name_short + '</a> <span class="price">€' + jsonData[i].price + '</span></p>'
+                    '                        <p><a href="#">' + jsonData[i].nameShort + '</a> <span class="price">€' + jsonData[i].price + '</span></p>' +
+                   ' <div class="product-removal">' +
+                        '<button class="remove-product">' +
+                          '  Remove ' +
+                       ' </button>'+
+                    '</div>' +
+                    '                    </div>' +
                 '        </div>\n' +
                 '    </div>';
             }
-            document.getElementById("products_div").innerHTML = info;
+            document.getElementById("cart_div").innerHTML = info;
         })
         .catch(function (err) {
             // There was an error
             console.warn('Something went wrong.', err);
         })
+
 
 
 </script>
