@@ -54,12 +54,10 @@ public class ShopRepository {
     }
 
     public void addToCart(CartItem cartItem) {
-        String sql = "INSERT INTO cart_item (product_id, account_id, quantity, price) VALUES (:product_id, :account_id, :quantity, :price)";
+        String sql = "INSERT INTO cart_item (product_id, quantity) VALUES (:product_id, :quantity)";
         Map<String, Object> paraMap = new HashMap<>();
         paraMap.put("product_id", cartItem.getProduct_id());
-        paraMap.put("account_id", cartItem.getAccount_id());
         paraMap.put("quantity", cartItem.getQuantity());
-        paraMap.put("price", cartItem.getPrice());
         jdbcTemplate.update(sql, paraMap);
     }
 

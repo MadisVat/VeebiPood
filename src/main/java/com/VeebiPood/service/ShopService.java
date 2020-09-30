@@ -6,7 +6,6 @@ import com.VeebiPood.service.Hybernate.HybernateRepo;
 import com.VeebiPood.service.gettersAndSetters.CartItem;
 import com.VeebiPood.service.gettersAndSetters.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.converter.BufferedImageHttpMessageConverter;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,8 +35,11 @@ public class ShopService {
         return shopRepository.getCategory();
     }
 
-    public void addToCart(CartItem cart) { shopRepository.addToCart(cart);}
-
+    public void addToCart(CartItem cart, String userName) {
+        // TODO find accountId by username
+        cart.setAccount_id(1l);// TODO asenda 1l leitud accountId-ga
+        shopRepository.addToCart(cart);
+    }
 //    public static byte[] converterDemo(Image x) {
 //        ImageConverter _imageConverter = new BufferedImageHttpMessageConverter();
 //    }

@@ -3,6 +3,12 @@ package com.VeebiPood.service.gettersAndSetters;
 import java.math.BigDecimal;
 
 public class CartItem {
+    private Long id;
+    private Long product_id;
+    private Long account_id;
+    private Long quantity;
+    private BigDecimal price;
+
     public Long getId() {
         return id;
     }
@@ -42,12 +48,6 @@ public class CartItem {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
-
-    private Long id;
-    private Long product_id;
-    private Long account_id;
-    private Long quantity;
-    private BigDecimal price;
 
 
 }

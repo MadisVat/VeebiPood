@@ -43,9 +43,9 @@ public class ShopController {
         return new LoggedInResponse(principal);
     }
 
-    @GetMapping("addToCart")
-    public void addToCart(@RequestBody CartItem cart) {
-        shopService.addToCart(cart);
+    @PutMapping("addToCart")
+    public void addToCart(@RequestBody CartItem cart, Principal principal) {
+        shopService.addToCart(cart, principal.getName());
     }
 
     //@PutMapping("addAccount")
