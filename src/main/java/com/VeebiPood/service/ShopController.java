@@ -59,6 +59,9 @@ public class ShopController {
         return shopService.getCartItemList(principal.getName());
     }
 
+//    @PutMapping("emptyCartItemList")
+//    public void emptyCartItemList
+
 // TODO @GetMapping("getProductPic")
 // TODO kategooria kuvamine korrektseks
 

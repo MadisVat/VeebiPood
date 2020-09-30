@@ -93,7 +93,6 @@ public class ShopRepository {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("account_id", accountId);
         return jdbcTemplate.query(sql, paramMap, new CartItemListRowMapper());
-        //select * from cart_item where account_id = '1'
     }
 
 
