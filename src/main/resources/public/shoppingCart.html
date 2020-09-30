@@ -25,7 +25,7 @@
     <p><a href="about.html">About us</a></p>
 </div>
 
-
+<!--
 <div class="col-25">
     <div class="container">
         <h4>Cart
@@ -41,11 +41,11 @@
         <hr>
         <p>Total <span class="price" style="color:black"><b>$30</b></span></p>
     </div>
-</div>
+</div>-->
 
 <script>
 
-    fetch('getCartItem/', {
+    fetch('getCartItemList/', {
         method: 'GET'
     }).then(function (response) {
         // The API call was successful!
@@ -55,28 +55,21 @@
             return Promise.reject(response);
         }
     })
-        .then(function(jsonData) {
+        .then(function (jsonData) {
             let info = "";
             for (let i = 0; i < jsonData.length; i++) {
                 info = info + '    <div class="col-25">\n' +
                     '        <div class="container">\n' +
                     '            <h4>Cart \n' +
-                    '                <span class="price" style="color:black">'+jsonData[i].product_id+'</span>\n' +
-                    '                <h4><a href="">'+jsonData[i].name_short+'</a></h4>\n' +
-                    '                <p>'+jsonData[i].name_long+'</p>\n' +
-                    '                <div class="product-bottom-details">\n' +
-                    '                    <div class="product-price">€'+jsonData[i].price+'</div>\n' +
+                    '                <span class="price" style="color:black">' + jsonData[i].productId + '</span>\n' +
+                    '               <i class="fa fa-shopping-cart"></i> ' +
+                    '               <b>4</b> ' +
+                    '                </span>' +
+                    '                    </h4>' +
                     '                    <div class="product-links">\n' +
-                    '                        <a href=""><i class="fa fa-heart"></i></a>\n' +
-                    '                        <a href=""><i class="fa fa-shopping-cart"></i></a>\n' +
-                    '                    </div>\n' +
-                    '                    <p>\n' +
-                    '                        <button>Add to Cart</button>\n' +
-                    '                    </p>\n' +
-                    '                </div>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '    </div>';
+                    '                        <p><a href="#">' + jsonData[i].name_short + '</a> <span class="price">€' + jsonData[i].price + '</span></p>'
+                '        </div>\n' +
+                '    </div>';
             }
             document.getElementById("products_div").innerHTML = info;
         })
@@ -84,8 +77,6 @@
             // There was an error
             console.warn('Something went wrong.', err);
         })
-
-
 
 
 </script>

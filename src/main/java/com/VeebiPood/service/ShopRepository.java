@@ -2,7 +2,8 @@ package com.VeebiPood.service;
 
 import com.VeebiPood.service.Dropdowns.Category;
 import com.VeebiPood.service.Dropdowns.CategoryRowMapper;
-import com.VeebiPood.service.gettersAndSetters.CartItemRowMapper;
+import com.VeebiPood.service.gettersAndSetters.CartItemList;
+
 import com.VeebiPood.service.gettersAndSetters.Product;
 import com.VeebiPood.service.gettersAndSetters.ProductRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
-import java.sql.ResultSet;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -81,18 +82,28 @@ public class ShopRepository {
     }
 
     public Long getAccountId(String userName) {
-        String sql = "SELECT id FROM account WHERE user_name = :userName";
+        String sql = "SELECT id FROM account WHERE user_name = :user_name";
         Map<String, String> paramMap = new HashMap<>();
         paramMap.put("user_name", userName);
         return jdbcTemplate.queryForObject(sql, paramMap, Long.class);
     }
 
-    public List<CartItem> getCartItemList(CartItem cartItem) {
+    public List<CartItemList> getCartItemList(Long accountId) {
         String sql = "SELECT * FROM cart_item WHERE account_id = :account_id";
-        Map<String, Long> paramMap = new HashMap<>();
-        paramMap.put("account_id", cartItem.getAccountId());
-        return jdbcTemplate.query(sql, new HashMap<>(), new CartItemRowMapper());
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("account_id", accountId);
+        return jdbcTemplate.query(sql, paramMap, new CartItemListRowMapper());
+        //select * from cart_item where account_id = '1'
     }
+
+
+//    public List<CartItem> getCartItemList(CartItem cartItem) {
+//        String sql = "SELECT * FROM cart_item WHERE account_id = :account_id";
+//        Map<String, Long> paramMap = ne
+//        w HashMap<>();
+//        paramMap.put("account_id", cartItem.getAccountId());
+//        return jdbcTemplate.query(sql, new HashMap<>(), new CartItemRowMapper());
+//    }
 
     //select * from product where gender = 'male'
 

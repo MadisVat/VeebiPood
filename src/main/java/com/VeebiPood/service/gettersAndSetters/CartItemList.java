@@ -2,7 +2,7 @@ package com.VeebiPood.service.gettersAndSetters;
 
 import java.math.BigDecimal;
 
-public class CartItem {
+public class CartItemList {
     private Long id;
     private Long productId;
     private Long accountId;

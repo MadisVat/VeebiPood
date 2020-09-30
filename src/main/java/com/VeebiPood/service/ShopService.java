@@ -3,8 +3,7 @@ package com.VeebiPood.service;
 
 import com.VeebiPood.service.Dropdowns.Category;
 import com.VeebiPood.service.Hybernate.HybernateRepo;
-import com.VeebiPood.service.gettersAndSetters.AddCartItemRequest;
-import com.VeebiPood.service.gettersAndSetters.CartItem;
+import com.VeebiPood.service.gettersAndSetters.CartItemList;
 import com.VeebiPood.service.gettersAndSetters.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,15 +51,12 @@ public class ShopService {
         shopRepository.addItemToCart(productId, accountId, quantity, productPrice);
     }
 
-//    paramMap.put("product_id", cartItem.getProductId());
-//        paramMap.put("account_id", cartItem.getAccountId());
-//        paramMap.put("quantity", cartItem.getQuantity());
-//        paramMap.put("price", cartItem.getPrice());
-
+    public List<CartItemList> getCartItemList(String userName) {
+        Long accountId = shopRepository.getAccountId(userName);
+        return shopRepository.getCartItemList(accountId);
+    }
 
     // TODO add to cart FRONDIST tuleb productID ja Quantity
-//addItemToCart
-//getCartItemList
 
 
     /*public BigDecimal transferCurrency(String fromAccount, String toAccount, BigDecimal amount) {

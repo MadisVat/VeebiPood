@@ -57,7 +57,7 @@
                     '                <img src="https://i.imgur.com/xdbHo4E.png" alt="">\n' +
                     '            </div>\n' +
                     '            <div class="product-details">\n' +
-                    '                <span class="product-catagory">'+jsonData[i].category_id+'</span>\n' +
+                    '                <span class="product-catagory">'+jsonData[i].categoryId+'</span>\n' +
                     '                <h4><a href="">'+jsonData[i].nameShort+'</a></h4>\n' +
                     '                <p>'+jsonData[i].nameLong+'</p>\n' +
                     '                <div class="product-bottom-details">\n' +
@@ -67,7 +67,7 @@
                     '                        <a href=""><i class="fa fa-shopping-cart"></i></a>\n' +
                     '                    </div>\n' +
                     '                    <p>\n' +
-                    '                        <button onclick="addToCart('+jsonData[i].id+', 1)" type="addToCart" class="addToCart">Add to Cart</button>\n' +
+                    '                        <button onclick="addItemToCart('+jsonData[i].id+', 1)" type="addItemToCart" class="addItemToCart">Add to Cart</button>\n' +
                     '                    </p>\n' +
                     '                </div>\n' +
                     '            </div>\n' +
@@ -83,15 +83,15 @@
 
 
 
-    function addToCart(productId, quantity) {
-        fetch("addToCart/", {
+    function addItemToCart(productId, quantity) {
+        fetch("addItemToCart/", {
             method: 'PUT',
             cache: 'no-cache',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                product_id: productId,
+                productId: productId,
                 quantity: quantity
             })
         })
