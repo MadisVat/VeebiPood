@@ -6,9 +6,9 @@ import java.math.BigInteger;
 public class Product {
     private Long id;
     private String serial;
-    private String name_short;
-    private String name_long;
-    private Long category_id;
+    private String nameShort;
+    private String nameLong;
+    private Long categoryId;
     private String colour;
     private String size;
     private String gender;
@@ -32,28 +32,28 @@ public class Product {
         this.serial = serial;
     }
 
-    public String getName_short() {
-        return name_short;
+    public String getNameShort() {
+        return nameShort;
     }
 
-    public void setName_short(String name_short) {
-        this.name_short = name_short;
+    public void setNameShort(String nameShort) {
+        this.nameShort = nameShort;
     }
 
-    public String getName_long() {
-        return name_long;
+    public String getNameLong() {
+        return nameLong;
     }
 
-    public void setName_long(String name_long) {
-        this.name_long = name_long;
+    public void setNameLong(String nameLong) {
+        this.nameLong = nameLong;
     }
 
-    public Long getCategory_id() {
-        return category_id;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory_id(Long category_id) {
-        this.category_id = category_id;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getColour() {

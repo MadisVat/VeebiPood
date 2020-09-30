@@ -23,6 +23,8 @@
             </column>
             <column name="active" type="boolean">
             </column>
+            <column name="user_name" type="text">
+            </column>
         </createTable>
 <!--PRODUCT-->
         <createTable tableName="product">
@@ -123,7 +125,8 @@
     </changeSet>
 
     <changeSet author="madvat" id="2020-09-28 add table cart_item">
-        <!--CART_ITEM-->
+
+<!--CART_ITEM-->
         <createTable tableName="cart_item">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" unique="true"/>

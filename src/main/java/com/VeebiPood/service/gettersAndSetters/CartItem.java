@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 
 public class CartItem {
     private Long id;
-    private Long product_id;
-    private Long account_id;
+    private Long productId;
+    private Long accountId;
     private Long quantity;
     private BigDecimal price;
 
@@ -17,20 +17,20 @@ public class CartItem {
         this.id = id;
     }
 
-    public Long getProduct_id() {
-        return product_id;
+    public Long getProductId() {
+        return productId;
     }
 
-    public void setProduct_id(Long product_id) {
-        this.product_id = product_id;
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
-    public Long getAccount_id() {
-        return account_id;
+    public Long getAccountId() {
+        return accountId;
     }
 
-    public void setAccount_id(Long account_id) {
-        this.account_id = account_id;
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
 
     public Long getQuantity() {
@@ -48,6 +48,4 @@ public class CartItem {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
-
-
 }

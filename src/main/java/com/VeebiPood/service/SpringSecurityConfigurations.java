@@ -31,3 +31,9 @@ public class SpringSecurityConfigurations extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 }
+
+
+//
+//Turvalahendustes on 2 asja:
+//1. sessioni ID
+//2. mingi web token nagu www.jwt.io
