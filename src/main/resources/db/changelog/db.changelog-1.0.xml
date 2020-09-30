@@ -125,6 +125,7 @@
     </changeSet>
 
     <changeSet author="madvat" id="2020-09-28 add table cart_item">
+
 <!--CART_ITEM-->
         <createTable tableName="cart_item">
             <column name="id" type="bigint" autoIncrement="true">

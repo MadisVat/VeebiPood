@@ -7,7 +7,6 @@ import com.VeebiPood.service.gettersAndSetters.AddCartItemRequest;
 import com.VeebiPood.service.gettersAndSetters.CartItem;
 import com.VeebiPood.service.gettersAndSetters.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.converter.BufferedImageHttpMessageConverter;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;

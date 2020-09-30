@@ -43,7 +43,7 @@ public class ShopController {
     public LoggedInResponse userStatus(Principal principal) {
         return new LoggedInResponse(principal);
     }
-
+  
     @GetMapping("getProductPrice")
     public BigDecimal getProductPrice(@RequestBody Long id) {
         return shopService.getProductPrice(id);

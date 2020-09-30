@@ -2,7 +2,6 @@ package com.VeebiPood.service;
 
 import com.VeebiPood.service.Dropdowns.Category;
 import com.VeebiPood.service.Dropdowns.CategoryRowMapper;
-import com.VeebiPood.service.gettersAndSetters.CartItem;
 import com.VeebiPood.service.gettersAndSetters.CartItemRowMapper;
 import com.VeebiPood.service.gettersAndSetters.Product;
 import com.VeebiPood.service.gettersAndSetters.ProductRowMapper;
@@ -100,7 +99,6 @@ public class ShopRepository {
     // TODO delete row from cart db- kui orderiks läheb.
     // TODO delete row from product db
     // TODO Print lists - product, cart_item. Listi järgi nupud kustutusfunktsiooniga.
-
 
 /*
 
