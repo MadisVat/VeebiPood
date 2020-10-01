@@ -21,7 +21,6 @@
     </h1>
 </div>
 
-
 <!--<div class="col-25">-->
 <!--    <div class="container">-->
 <!--        <h4>Cart-->
@@ -39,13 +38,17 @@
 <!--    </div>-->
 <div id="cart_div" class="row">
 
-</div>
+
+<div id="cart_div" class="row">
 
 
-
-
-
-
+  
+  
+  
+  
+  
+  
+  
 <script>
 
     fetch('getCartItemList/', {
@@ -80,6 +83,11 @@
                 '    </div>';
             }
             document.getElementById("cart_div").innerHTML = info;
+      
+      
+//// MUl oli siit alates puudu
+      
+      
         })
         .catch(function (err) {
             // There was an error
@@ -118,6 +126,7 @@
                     '    </div>';
             }
             document.getElementById("cart_div").innerHTML = info;
+
         })
         .catch(function (err) {
             // There was an error
