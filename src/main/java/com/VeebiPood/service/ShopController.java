@@ -60,7 +60,6 @@ public class ShopController {
         return shopService.getCartItemList(principal.getName());
     }
 
-
     @GetMapping("getCartItemList")
     public List<CartItemList> getCartItemList(Principal principal) {
         return shopService.getCartItemList(principal.getName());

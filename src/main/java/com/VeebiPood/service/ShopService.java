@@ -45,16 +45,30 @@ public class ShopService {
         return shopRepository.getProductName(id);
     }
 
+//    public void addItemToCart(Long productId, Long quantity, String userName) {
+//        Long accountId = shopRepository.getAccountId(userName);
+//        BigDecimal productPrice = shopRepository.getProductPrice(productId);
+//        shopRepository.addItemToCart(productId, accountId, quantity, productPrice);
+//    }
+
     public void addItemToCart(Long productId, Long quantity, String userName) {
         Long accountId = shopRepository.getAccountId(userName);
         BigDecimal productPrice = shopRepository.getProductPrice(productId);
-        shopRepository.addItemToCart(productId, accountId, quantity, productPrice);
+        Long empty = shopRepository.checkIfItemInCart(productId, accountId);
+        if (empty == null || empty < 1) {
+            shopRepository.addItemToCart(productId, accountId, quantity, productPrice);
+        } else {
+            Long newQuantity = shopRepository.checkIfItemInCart(productId, accountId) + 1;
+            shopRepository.updateQuantity(productId, accountId, newQuantity);
+        }
+
     }
 
-    public List<CartItemList> removeItemFromCart(Long productId, Long quantity, String userName) {
+//    checkIfItemInCart
+
+    public List<CartItemList> removeItemFromCart(Long productId, String userName) {
         Long accountId = shopRepository.getAccountId(userName);
-        BigDecimal productPrice = shopRepository.getProductPrice(productId);
-        shopRepository.removeItemFromCart(productId, accountId, quantity, productPrice);
+        shopRepository.removeItemFromCart(productId, accountId);
         return shopRepository.getCartItemList(accountId);
     }
 
@@ -63,10 +77,7 @@ public class ShopService {
         return shopRepository.getCartItemList(accountId);
     }
 
-    // TODO add to cart FRONDIST tuleb productID ja Quantity
-
-
-    /*public BigDecimal transferCurrency(String fromAccount, String toAccount, BigDecimal amount) {
+        /*public BigDecimal transferCurrency(String fromAccount, String toAccount, BigDecimal amount) {
         accountRepository.getBalance(fromAccount);
         BigDecimal currentBalanceFrom = accountRepository.getBalance(fromAccount);
         System.out.println("Current balance \"From Account\": " + currentBalanceFrom);
