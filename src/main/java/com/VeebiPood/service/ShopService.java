@@ -51,6 +51,13 @@ public class ShopService {
         shopRepository.addItemToCart(productId, accountId, quantity, productPrice);
     }
 
+    public List<CartItemList> removeItemFromCart(Long productId, Long quantity, String userName) {
+        Long accountId = shopRepository.getAccountId(userName);
+        BigDecimal productPrice = shopRepository.getProductPrice(productId);
+        shopRepository.removeItemFromCart(productId, accountId, quantity, productPrice);
+        return shopRepository.getCartItemList(accountId);
+    }
+
     public List<CartItemList> getCartItemList(String userName) {
         Long accountId = shopRepository.getAccountId(userName);
         return shopRepository.getCartItemList(accountId);

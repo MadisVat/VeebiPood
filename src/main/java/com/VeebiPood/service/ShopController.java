@@ -54,6 +54,13 @@ public class ShopController {
         shopService.addItemToCart(request.getProductId(), request.getQuantity(), principal.getName());
     }
 
+    @PutMapping("removeItemFromCart")
+    public List<CartItemList> removeItemFromCart(@RequestBody AddCartItemRequest request, Principal principal) {
+        shopService.addItemToCart(request.getProductId(), request.getQuantity(), principal.getName());
+        return shopService.getCartItemList(principal.getName());
+    }
+
+
     @GetMapping("getCartItemList")
     public List<CartItemList> getCartItemList(Principal principal) {
         return shopService.getCartItemList(principal.getName());

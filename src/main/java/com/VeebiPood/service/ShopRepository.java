@@ -70,6 +70,7 @@ public class ShopRepository {
         return jdbcTemplate.query(sql, new HashMap<>(), new CategoryRowMapper());
     }
 
+
     public void addItemToCart(Long productId, Long accountId, Long quantity, BigDecimal price) {
         String sql = "INSERT INTO cart_item (product_id, account_id, quantity, price) " +
                 "VALUES (:product_id, :account_id, :quantity, :price)";
@@ -80,6 +81,18 @@ public class ShopRepository {
         paramMap.put("price", price);
         jdbcTemplate.update(sql, paramMap);
     }
+
+    // TODO
+    public void removeItemFromCart(Long productId, Long accountId, Long quantity, BigDecimal price) {
+        String sql = "DELETE FROM cart_item WHERE product_id = :product_id, ;";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("product_id", productId);
+        paramMap.put("account_id", accountId);
+        paramMap.put("quantity", quantity);
+        paramMap.put("price", price);
+        jdbcTemplate.update(sql, paramMap);
+    }
+
 
     public Long getAccountId(String userName) {
         String sql = "SELECT id FROM account WHERE user_name = :user_name";
