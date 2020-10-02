@@ -116,8 +116,16 @@ public class ShopRepository {
         return jdbcTemplate.queryForObject(sql, paramMap, Long.class);
     }
 
+//    public List<CartItemList> getCartItemList(Long accountId) {
+//        String sql = "SELECT * FROM cart_item WHERE account_id = :account_id";
+//        Map<String, Object> paramMap = new HashMap<>();
+//        paramMap.put("account_id", accountId);
+//        return jdbcTemplate.query(sql, paramMap, new CartItemListRowMapper());
+//    }
+
     public List<CartItemList> getCartItemList(Long accountId) {
-        String sql = "SELECT * FROM cart_item WHERE account_id = :account_id";
+        String sql = "SELECT *, c.quantity * p.price total_price FROM cart_item c join product p on p.id = c.product_id\n" +
+                "WHERE account_id = :account_id";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("account_id", accountId);
         return jdbcTemplate.query(sql, paramMap, new CartItemListRowMapper());

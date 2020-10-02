@@ -16,6 +16,8 @@ public class CartItemListRowMapper implements RowMapper<CartItemList> {
         cartItemList.setAccountId(resultSet.getLong("account_id"));
         cartItemList.setQuantity(resultSet.getLong("quantity"));
         cartItemList.setPrice(resultSet.getBigDecimal("price"));
+        cartItemList.setNameShort(resultSet.getString("name_short"));
+        cartItemList.setTotalPrice(resultSet.getBigDecimal("total_price"));
         return cartItemList;
     }
 }

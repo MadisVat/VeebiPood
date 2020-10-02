@@ -8,6 +8,8 @@ public class CartItemList {
     private Long accountId;
     private Long quantity;
     private BigDecimal price;
+    private String nameShort;
+    private BigDecimal totalPrice;
 
     public Long getId() {
         return id;
@@ -47,5 +49,21 @@ public class CartItemList {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getNameShort() {
+        return nameShort;
+    }
+
+    public void setNameShort(String nameShort) {
+        this.nameShort = nameShort;
+    }
+
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }
