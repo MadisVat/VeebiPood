@@ -82,14 +82,7 @@ public class ShopRepository {
         jdbcTemplate.update(sql, paramMap);
     }
 
-    public void updateQuantity(Long productId, Long accountId, Long newQuantity) {
-        String sql = "UPDATE cart_item SET quantity = :quantity WHERE account_id = :account_id, ";
-        Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("product_id", productId);
-        paramMap.put("account_id", accountId);
-        paramMap.put("quantity", newQuantity);
-        jdbcTemplate.update(sql, paramMap);
-    }
+
 
     public void removeItemFromCart(Long productId, Long accountId) {
         String sql = "DELETE FROM cart_item WHERE account_id = :account_id AND product_id = :product_id";
@@ -99,12 +92,21 @@ public class ShopRepository {
         jdbcTemplate.update(sql, paramMap);
     }
 
-    public Long checkIfItemInCart(Long productId, Long accountId) {
-        String sql = "SELECT quantity FROM cart_item WHERE product_id = :product_id, account_id = :account_id";
+    public List<Long> checkIfItemInCart(Long productId, Long accountId) {
+        String sql = "SELECT quantity FROM cart_item WHERE product_id = :product_id and account_id = :account_id";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("product_id", productId);
         paramMap.put("account_id", accountId);
-        return jdbcTemplate.queryForObject(sql, new HashMap<>(), Long.class);
+        return jdbcTemplate.queryForList(sql, paramMap, Long.class);
+    }
+
+    public void updateQuantity(Long productId, Long accountId, Long newQuantity) {
+        String sql = "UPDATE cart_item SET quantity = :quantity WHERE account_id = :account_id and product_id = :product_id ";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("product_id", productId);
+        paramMap.put("account_id", accountId);
+        paramMap.put("quantity", newQuantity);
+        jdbcTemplate.update(sql, paramMap);
     }
 
     public Long getAccountId(String userName) {

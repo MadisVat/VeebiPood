@@ -54,12 +54,11 @@ public class ShopService {
     public void addItemToCart(Long productId, Long quantity, String userName) {
         Long accountId = shopRepository.getAccountId(userName);
         BigDecimal productPrice = shopRepository.getProductPrice(productId);
-        Long empty = shopRepository.checkIfItemInCart(productId, accountId);
-        if (empty == null || empty < 1) {
+        List<Long> empty = shopRepository.checkIfItemInCart(productId, accountId);
+        if (empty.isEmpty()) {
             shopRepository.addItemToCart(productId, accountId, quantity, productPrice);
         } else {
-            Long newQuantity = shopRepository.checkIfItemInCart(productId, accountId) + 1;
-            shopRepository.updateQuantity(productId, accountId, newQuantity);
+            shopRepository.updateQuantity(productId, accountId, empty.get(0) + 1);
         }
 
     }
